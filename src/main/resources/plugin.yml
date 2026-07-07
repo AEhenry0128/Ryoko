@@ -1,0 +1,7 @@
+name: Ryoko
+version: '${version}'
+main: io.shikumiya.ryoko.main
+api-version: '1.21.11'
+commands:
+  ryoko:
+    usage: /ryoko
