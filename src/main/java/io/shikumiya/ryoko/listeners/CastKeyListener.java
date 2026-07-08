@@ -1,8 +1,7 @@
 package io.shikumiya.ryoko.listeners;
 
-import io.shikumiya.ryoko.MessageHelper;
 import io.shikumiya.ryoko.characters.PlayerManager;
-import io.shikumiya.ryoko.mythicskill;
+import io.shikumiya.ryoko.events.CastMythicSkillEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -36,8 +35,7 @@ public class CastKeyListener implements Listener {
         if (PlayerManager.getC(player)) {
 
             event.setCancelled(true);
-            //mythicskill.castTest();
-            event.getPlayer().sendMessage("world");
+            CastMythicSkillEvent.onCast(player, "hello_world");
         }
     }
 
