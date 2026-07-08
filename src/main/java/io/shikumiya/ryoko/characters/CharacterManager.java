@@ -8,6 +8,11 @@ public class CharacterManager {
 
     private static final Map<String, Map<?, ?>> LoadedCharacter = new LinkedHashMap<>();
 
+    public static boolean isCharacterExist(String character) {
+        return LoadedCharacter.containsKey(character);
+    }
+
+
     public static Set<String> getLoadedCharacter() {
         return LoadedCharacter.keySet();
     }

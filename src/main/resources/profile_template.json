@@ -1,6 +1,10 @@
 {
   "uuid": "",
-  "character": {
+  "Character": {
+    "Furina": {
+      "current_level": 1
+    }
 
   }
+
 }
