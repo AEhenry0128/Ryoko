@@ -1,14 +1,13 @@
-package io.shikumiya.ryoko.characters;
+package io.shikumiya.ryoko.players;
 
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class PlayerManager {
+public class PlayerDataManager {
 
     private static final Map<Player, String> playerCList = new HashMap<>();
-
 
     public static void setPlayerCharacter(Player player, String character) {
         playerCList.put(player, character);

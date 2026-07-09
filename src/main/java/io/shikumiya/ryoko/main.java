@@ -8,7 +8,6 @@ import java.io.File;
 
 public final class main extends JavaPlugin {
 
-
     @Override
     public void onEnable() {
 
@@ -16,11 +15,7 @@ public final class main extends JavaPlugin {
 
         this.getCommand("ryoko").setExecutor(new RyokoCommand());
 
-        File characterFolder = new File(getDataFolder(), "character");
-        if (!characterFolder.exists()) {
-            characterFolder.mkdirs();
-        }
-
+        ConfigHandler.onServerStart(getDataFolder());
         CharacterLoader.getFile();
 
         getServer().getPluginManager().registerEvents(new CastKeyListener(this), this);

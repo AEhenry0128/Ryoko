@@ -12,7 +12,6 @@ public class CharacterManager {
         return LoadedCharacter.containsKey(character);
     }
 
-
     public static Set<String> getLoadedCharacter() {
         return LoadedCharacter.keySet();
     }

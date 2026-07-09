@@ -1,6 +1,6 @@
 package io.shikumiya.ryoko.listeners;
 
-import io.shikumiya.ryoko.characters.PlayerManager;
+import io.shikumiya.ryoko.players.PlayerDataManager;
 import io.shikumiya.ryoko.events.CastMythicSkillEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -22,7 +22,7 @@ public class CastKeyListener implements Listener {
     public void pressNumber(PlayerItemHeldEvent event) {
 
         Player player = event.getPlayer();
-        if (PlayerManager.getC(player)) {
+        if (PlayerDataManager.getC(player)) {
 
             event.setCancelled(true);
         }
@@ -32,7 +32,7 @@ public class CastKeyListener implements Listener {
     public void pressF(PlayerSwapHandItemsEvent event) {
 
         Player player = event.getPlayer();
-        if (PlayerManager.getC(player)) {
+        if (PlayerDataManager.getC(player)) {
 
             event.setCancelled(true);
             CastMythicSkillEvent.onCast(player, "hello_world");
@@ -43,7 +43,7 @@ public class CastKeyListener implements Listener {
     public void pressQ(PlayerDropItemEvent event) {
 
         Player player = event.getPlayer();
-        if (PlayerManager.getC(player)) {
+        if (PlayerDataManager.getC(player)) {
 
             event.setCancelled(true);
         }

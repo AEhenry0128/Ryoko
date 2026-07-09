@@ -2,7 +2,7 @@ package io.shikumiya.ryoko.commands.character;
 
 import io.shikumiya.ryoko.MessageHelper;
 import io.shikumiya.ryoko.characters.CharacterManager;
-import io.shikumiya.ryoko.characters.PlayerManager;
+import io.shikumiya.ryoko.players.PlayerDataManager;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -28,7 +28,7 @@ public class SetCommand {
             return;
         }
 
-        PlayerManager.setPlayerCharacter(player, character);
+        PlayerDataManager.setPlayerCharacter(player, character);
         MessageHelper.sendMessage(sender, "set!");
     }
 

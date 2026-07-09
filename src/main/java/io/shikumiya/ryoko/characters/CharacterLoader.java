@@ -11,7 +11,7 @@ public class CharacterLoader {
 
     public static void getFile() {
 
-        File folder = new File("plugins/Ryoko/character");
+        File folder = new File("plugins/Ryoko/characters");
         File[] ALLFILE = folder.listFiles();
 
         for (File file : ALLFILE) {
