@@ -7,7 +7,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 import java.util.Map;
 
-public class CharacterLoader {
+public class CharacterHandler {
 
     public static void getFile() {
 

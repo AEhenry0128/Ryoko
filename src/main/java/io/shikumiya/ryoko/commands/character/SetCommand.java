@@ -7,6 +7,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.io.IOException;
+
 public class SetCommand {
 
     public void onCommand(CommandSender sender, String[] args) {
@@ -30,6 +32,7 @@ public class SetCommand {
 
         PlayerDataManager.setPlayerCharacter(player, character);
         MessageHelper.sendMessage(sender, "set!");
+        PlayerDataManager.PlayerDataUpdate(player);
     }
 
 }

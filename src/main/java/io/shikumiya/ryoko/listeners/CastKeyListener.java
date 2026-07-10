@@ -1,5 +1,6 @@
 package io.shikumiya.ryoko.listeners;
 
+import io.shikumiya.ryoko.MessageHelper;
 import io.shikumiya.ryoko.players.PlayerDataManager;
 import io.shikumiya.ryoko.events.CastMythicSkillEvent;
 import org.bukkit.entity.Player;
@@ -24,7 +25,11 @@ public class CastKeyListener implements Listener {
         Player player = event.getPlayer();
         if (PlayerDataManager.getC(player)) {
 
+            int previousSlot = event.getPreviousSlot();
+            int newSlot = event.getNewSlot();
+
             event.setCancelled(true);
+            MessageHelper.sendMessage(player, String.valueOf(newSlot));
         }
     }
 
@@ -46,6 +51,7 @@ public class CastKeyListener implements Listener {
         if (PlayerDataManager.getC(player)) {
 
             event.setCancelled(true);
+            CastMythicSkillEvent.onCast(player, "hello_world");
         }
     }
 
