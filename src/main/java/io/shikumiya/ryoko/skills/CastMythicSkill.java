@@ -1,4 +1,4 @@
-package io.shikumiya.ryoko.events;
+package io.shikumiya.ryoko.skills;
 
 import io.lumine.mythic.api.skills.Skill;
 import io.lumine.mythic.api.skills.SkillCaster;
@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import java.util.HashSet;
 import java.util.Optional;
 
-public class CastMythicSkillEvent {
+public class CastMythicSkill {
 
     public static void onCast(Player player, String skillID) {
 

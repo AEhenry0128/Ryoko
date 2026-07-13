@@ -10,8 +10,8 @@ public class ListCommand {
 
     public void onCommand(CommandSender sender) {
 
-        Set<String> character = CharacterManager.getLoadedCharacter();
-        MessageHelper.sendMessage(sender, character.toString());
+//        Set<String> character = CharacterManager.getLoadedCharacter();
+//        MessageHelper.sendMessage(sender, character.toString());
 
     }
 }

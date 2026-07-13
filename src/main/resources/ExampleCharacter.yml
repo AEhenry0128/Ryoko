@@ -1,0 +1,14 @@
+Furina:
+  Name: 芙寧娜
+  Description:
+  - '芙芙芙芙芙芙'
+  - ''
+  Options:
+    DoubleJump: true
+    Gliding: true
+    OffhandItem: false
+  Ability:
+  - R Sprint
+  - Q mythicmobs:skillA
+  - F mythic:skillB
+  - 4 mm:skillC

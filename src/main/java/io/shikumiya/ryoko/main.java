@@ -1,11 +1,10 @@
 package io.shikumiya.ryoko;
 
-import io.shikumiya.ryoko.characters.CharacterHandler;
+import io.shikumiya.ryoko.characters.CharacterLoader;
 import io.shikumiya.ryoko.commands.RyokoCommand;
+import io.shikumiya.ryoko.configs.ConfigManager;
 import io.shikumiya.ryoko.listeners.CastKeyListener;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.io.File;
 
 public final class main extends JavaPlugin {
 
@@ -14,10 +13,10 @@ public final class main extends JavaPlugin {
 
         this.getCommand("ryoko").setExecutor(new RyokoCommand());
 
-        ConfigHandler.createDefaultFolder(getDataFolder());
-        ConfigHandler.createDefaultFile(getDataFolder());
+        ConfigManager.createDefaultFolder(getDataFolder());
+        ConfigManager.createDefaultFile(getDataFolder());
 
-        CharacterHandler.getFile();
+        CharacterLoader.load();
 
         getServer().getPluginManager().registerEvents(new CastKeyListener(this), this);
     }

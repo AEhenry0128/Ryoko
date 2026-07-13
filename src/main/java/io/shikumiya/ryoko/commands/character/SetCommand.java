@@ -25,14 +25,13 @@ public class SetCommand {
         }
 
         String character = args[3];
-        if (!(CharacterManager.getLoadedCharacter().contains(character))) {
-            MessageHelper.sendMessage(sender, "character not found.");
-            return;
-        }
+//        if (!(CharacterManager.getLoadedCharacter().contains(character))) {
+//            MessageHelper.sendMessage(sender, "character not found.");
+//            return;
+//        }
 
         PlayerDataManager.setPlayerCharacter(player, character);
         MessageHelper.sendMessage(sender, "set!");
-        PlayerDataManager.PlayerDataUpdate(player);
     }
 
 }
