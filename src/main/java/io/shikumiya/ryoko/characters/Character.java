@@ -7,12 +7,12 @@ import java.util.List;
 
 public class Character {
 
-    private String ID;
-    private String NAME;
-    private List<String> DESCRIPTION;
-    private boolean DOUBLE_JUMP;
-    private boolean GLIDING;
-    private boolean OFFHAND_ITEM;
+    private final String ID;
+    private final String NAME;
+    private final List<String> DESCRIPTION;
+    private final boolean DOUBLE_JUMP;
+    private final boolean GLIDING;
+    private final boolean OFFHAND_ITEM;
     private String[] ABILITY;
 
 
@@ -20,9 +20,9 @@ public class Character {
         this.ID = config.getName();
         this.NAME = config.getString("Name");
         this.DESCRIPTION = config.getStringList("Description");
-        this.DOUBLE_JUMP = true;
-        this.GLIDING = true;
-        this.OFFHAND_ITEM = false;
+        this.DOUBLE_JUMP = config.getBoolean("Options.DoubleJump", true);
+        this.GLIDING = config.getBoolean("Options.Gliding", true);
+        this.OFFHAND_ITEM = config.getBoolean("Options.OffhandItem", false);
     }
 
     public String getID() {
@@ -33,8 +33,19 @@ public class Character {
         return this.NAME;
     }
 
-    public List<String> Description() {
+    public List<String> getDescription() {
         return this.DESCRIPTION;
     }
 
+    public boolean isDoubleJump() {
+        return this.DOUBLE_JUMP;
+    }
+
+    public boolean isGliding() {
+        return this.GLIDING;
+    }
+
+    public boolean isOffhandItem() {
+        return this.OFFHAND_ITEM;
+    }
 }

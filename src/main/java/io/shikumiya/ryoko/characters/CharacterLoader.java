@@ -1,12 +1,9 @@
 package io.shikumiya.ryoko.characters;
 
-import io.shikumiya.ryoko.MessageHelper;
 import io.shikumiya.ryoko.configs.Paths;
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
-import java.util.Map;
 
 public class CharacterLoader {
 
@@ -35,7 +32,5 @@ public class CharacterLoader {
             CharacterManager.RegisterCharacter(character);
         }
     }
-
-
 
 }
