@@ -15,6 +15,11 @@ public class ProfileManager {
         LoadedProfiles.put(UUID, profile);
     }
 
+    public static void removeProfile(Profile profile) {
+        UUID UUID = profile.getUUID();
+        LoadedProfiles.remove(UUID);
+    }
+
     public static Profile getProfile(Player player) {
         return LoadedProfiles.get(player.getUniqueId());
     }

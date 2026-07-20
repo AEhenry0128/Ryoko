@@ -42,6 +42,8 @@ public class Profile {
         this.CURRENT_CHARACTER = character.getID();
     }
 
+    public void removeCharacter() {this.CURRENT_CHARACTER = "";}
+
     public UUID getUUID() {
         return this.UNIQUE_ID;
     }

@@ -2,6 +2,9 @@ package io.shikumiya.ryoko.commands.character;
 
 import io.shikumiya.ryoko.messages.MessageHelper;
 import io.shikumiya.ryoko.messages.UsageMessage;
+import io.shikumiya.ryoko.profiles.Profile;
+import io.shikumiya.ryoko.profiles.ProfileLoader;
+import io.shikumiya.ryoko.profiles.ProfileManager;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -21,6 +24,8 @@ public class RemoveCommand {
             return;
         }
 
-        MessageHelper.sendMessage(sender, "removed!");
+        Profile profile = ProfileManager.getProfile(player);
+        profile.removeCharacter();
+        ProfileLoader.save(profile);
     }
 }

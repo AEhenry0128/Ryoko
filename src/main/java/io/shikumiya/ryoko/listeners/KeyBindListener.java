@@ -1,7 +1,7 @@
 package io.shikumiya.ryoko.listeners;
 
-import io.shikumiya.ryoko.messages.MessageHelper;
-import io.shikumiya.ryoko.skills.CastMythicSkill;
+import io.shikumiya.ryoko.profiles.Profile;
+import io.shikumiya.ryoko.profiles.ProfileManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,37 +20,30 @@ public class KeyBindListener implements Listener {
 
     @EventHandler
     public void pressNumber(PlayerItemHeldEvent event) {
-
         Player player = event.getPlayer();
-        if (true) {
-
-            int previousSlot = event.getPreviousSlot();
-            int newSlot = event.getNewSlot();
-
-            event.setCancelled(true);
-            MessageHelper.sendMessage(player, String.valueOf(newSlot));
-        }
+        if (!hasCharacter(player)) return;
+        event.setCancelled(true);
     }
 
     @EventHandler
     public void pressF(PlayerSwapHandItemsEvent event) {
-
         Player player = event.getPlayer();
-        if (true) {
-
-            event.setCancelled(true);
-            CastMythicSkill.onCast(player,"hello_world");
-        }
+        if (!hasCharacter(player)) return;
+        event.setCancelled(true);
     }
 
     @EventHandler
     public void pressQ(PlayerDropItemEvent event) {
-
         Player player = event.getPlayer();
-        if (true) {
+        if (!hasCharacter(player)) return;
+        event.setCancelled(true);
+    }
 
-            event.setCancelled(true);
-        }
+    private boolean hasCharacter(Player player) {
+        Profile profile = ProfileManager.getProfile(player);
+        if (profile == null) return false;
+        String character = profile.getCurrentCharacter();
+        return character != null && !character.isEmpty();
     }
 
 }
