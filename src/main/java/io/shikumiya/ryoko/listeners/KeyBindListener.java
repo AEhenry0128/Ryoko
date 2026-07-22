@@ -2,9 +2,11 @@ package io.shikumiya.ryoko.listeners;
 
 import io.shikumiya.ryoko.characters.Character;
 import io.shikumiya.ryoko.characters.CharacterManager;
+import io.shikumiya.ryoko.messages.MessageHelper;
 import io.shikumiya.ryoko.profiles.Profile;
 import io.shikumiya.ryoko.profiles.ProfileManager;
 import io.shikumiya.ryoko.skills.CastMythicSkill;
+import io.shikumiya.ryoko.skills.SkillExecutor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,11 +24,16 @@ public class KeyBindListener implements Listener {
     }
 
     @EventHandler
-    public void pressNumber(PlayerItemHeldEvent event) {
+    public void onPressHotKey(PlayerItemHeldEvent event) {
+
         Player player = event.getPlayer();
         Character character = hasCharacter(player);
         if (character == null) return;
+
         event.setCancelled(true);
+        int slot = event.getNewSlot() + 1;
+        String skill = character.getSkill(String.valueOf(slot));
+        SkillExecutor.CastSkill(player, skill);
     }
 
     @EventHandler
@@ -38,16 +45,19 @@ public class KeyBindListener implements Listener {
 
         event.setCancelled(true);
         String skill = character.getSkill("F");
-        CastSkill(player, skill);
+        SkillExecutor.CastSkill(player, skill);
     }
 
     @EventHandler
     public void onPressQ(PlayerDropItemEvent event) {
+
         Player player = event.getPlayer();
         Character character = hasCharacter(player);
         if (character == null) return;
-        event.setCancelled(true);
 
+        event.setCancelled(true);
+        String skill = character.getSkill("Q");
+        SkillExecutor.CastSkill(player, skill);
      }
 
     private Character hasCharacter(Player player) {
@@ -57,26 +67,5 @@ public class KeyBindListener implements Listener {
         if (current_character == null || current_character.isEmpty()) return null;
         return CharacterManager.getCharacter(current_character);
     }
-
-    private void CastSkill(Player player, String skill) {
-
-        if (skill == null || skill.isEmpty()) return;
-        String[] parts = skill.split(":",2);
-
-        if (parts.length == 1) {
-            return;
-        }
-
-        String prefix = parts[0].toLowerCase();
-        String skill_ = parts[1];
-
-        switch (prefix) {
-            case "mm":
-            case "mythicmobs":
-            case "mythic":
-                CastMythicSkill.onCast(player, skill_);
-        }
-    }
-
 
 }
