@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemHeldEvent;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -59,6 +60,18 @@ public class KeyBindListener implements Listener {
         String skill = character.getSkill("Q");
         SkillExecutor.CastSkill(player, skill);
      }
+
+    @EventHandler
+    public void onRightClick(PlayerInteractEvent event) {
+
+        Player player = event.getPlayer();
+        Character character = hasCharacter(player);
+        if (character == null) return;
+
+        if (!event.getAction().isRightClick()) return;
+        String skill = character.getSkill("R");
+        SkillExecutor.CastSkill(player, skill);
+    }
 
     private Character hasCharacter(Player player) {
         Profile profile = ProfileManager.getProfile(player);

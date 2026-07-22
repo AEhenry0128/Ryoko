@@ -9,7 +9,12 @@ public class SkillExecutor {
         if (skill == null || skill.isEmpty()) return;
         String[] parts = skill.split(":",2);
 
-        if (parts.length == 1) return;
+        if (parts.length == 1) {
+            switch (parts[0]) {
+                case "Sprint": Sprint.Cast(player);
+            }
+            return;
+        }
 
         String prefix = parts[0].toLowerCase();
         String skill_ = parts[1];
@@ -20,6 +25,7 @@ public class SkillExecutor {
             case "mythic":
                 CastMythicSkill.onCast(player, skill_);
         }
+        return;
     }
 
 }

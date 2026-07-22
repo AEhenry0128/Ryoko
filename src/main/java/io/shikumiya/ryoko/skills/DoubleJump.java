@@ -47,8 +47,8 @@ public class DoubleJump implements Listener {
 
         if (!player.isOnGround() && status == 0) {
             profile.setJumpStatus(1);
-            Vector boost = player.getVelocity().setY(0.6);
-            player.setVelocity(boost);
+            Vector doubleJump = player.getVelocity().setY(0.6);
+            player.setVelocity(doubleJump);
         }
 
     }
