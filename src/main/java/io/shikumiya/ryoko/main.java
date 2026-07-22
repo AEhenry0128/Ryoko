@@ -3,6 +3,7 @@ package io.shikumiya.ryoko;
 import io.shikumiya.ryoko.characters.CharacterLoader;
 import io.shikumiya.ryoko.commands.RyokoCommand;
 import io.shikumiya.ryoko.configs.ConfigManager;
+import io.shikumiya.ryoko.listeners.Testing;
 import io.shikumiya.ryoko.skills.DoubleJump;
 import io.shikumiya.ryoko.listeners.KeyBindListener;
 import io.shikumiya.ryoko.listeners.ProfileUpdateListener;
@@ -24,6 +25,7 @@ public final class main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new KeyBindListener(this), this);
         getServer().getPluginManager().registerEvents(new ProfileUpdateListener(this), this);
         getServer().getPluginManager().registerEvents(new DoubleJump(this), this);
+        getServer().getPluginManager().registerEvents(new Testing(this), this);
     }
 
 }

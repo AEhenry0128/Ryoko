@@ -14,6 +14,7 @@ public class Profile {
     private String DISPLAY_NAME;
     private String CURRENT_CHARACTER;
     private int JUMPING_STATUS;
+    private boolean LAST_JUMP_INPUT;
 
     public Profile(Player player) {
         this.UNIQUE_ID = player.getUniqueId();
@@ -27,6 +28,7 @@ public class Profile {
         this.DISPLAY_NAME = profile.get("displayName").toString();
         this.CURRENT_CHARACTER = profile.get("current_character").toString();
         this.JUMPING_STATUS = 0;
+        this.LAST_JUMP_INPUT = false;
     }
 
     public Map<String, Object> getJSONMap() {
@@ -50,6 +52,10 @@ public class Profile {
         this.JUMPING_STATUS = status;
     }
 
+    public void setLastJumpInput(boolean TF) {
+        this.LAST_JUMP_INPUT = TF;
+    }
+
     public UUID getUUID() {
         return this.UNIQUE_ID;
     }
@@ -64,6 +70,10 @@ public class Profile {
 
     public int getJumpStatus() {
         return this.JUMPING_STATUS;
+    }
+
+    public boolean getLastJumpInput() {
+        return this.LAST_JUMP_INPUT;
     }
 
 }
