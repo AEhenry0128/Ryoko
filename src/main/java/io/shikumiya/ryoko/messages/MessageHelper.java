@@ -22,4 +22,7 @@ public class MessageHelper {
         sender.sendMessage(finalMessage);
     }
 
+    public static void sendLog(CommandSender sender, String message) {
+    }
+
 }

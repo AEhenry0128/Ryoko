@@ -11,7 +11,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class AddCommand {
+public class SetCommand {
 
     public void onCommand(CommandSender sender, String[] args) {
 
@@ -34,6 +34,7 @@ public class AddCommand {
 
         Profile profile = ProfileManager.getProfile(player);
         profile.setCharacter(character);
+        player.getInventory().setHeldItemSlot(7);
         ProfileLoader.save(profile);
 
     }

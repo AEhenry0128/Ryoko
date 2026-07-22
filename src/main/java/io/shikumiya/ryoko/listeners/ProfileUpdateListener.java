@@ -1,10 +1,8 @@
 package io.shikumiya.ryoko.listeners;
 
-import io.shikumiya.ryoko.messages.MessageHelper;
 import io.shikumiya.ryoko.profiles.Profile;
 import io.shikumiya.ryoko.profiles.ProfileLoader;
 import io.shikumiya.ryoko.profiles.ProfileManager;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -33,6 +31,5 @@ public class ProfileUpdateListener implements Listener {
         Profile profile = ProfileManager.getProfile(player);
         ProfileLoader.save(profile);
         ProfileManager.removeProfile(profile);
-        MessageHelper.sendMessage(Bukkit.getConsoleSender(), "test");
     }
 }

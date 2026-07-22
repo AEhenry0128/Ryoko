@@ -14,7 +14,7 @@ public class CharacterCommand {
         }
 
         switch (args[1].toLowerCase()) {
-            case "add" -> new AddCommand().onCommand(sender, args);
+            case "set" -> new SetCommand().onCommand(sender, args);
             case "remove" -> new RemoveCommand().onCommand(sender, args);
             case "list" -> new ListCommand().onCommand(sender, args);
             case "info" -> new InfoCommand().onCommand(sender, args);

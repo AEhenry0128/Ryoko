@@ -45,5 +45,4 @@ public class KeyBindListener implements Listener {
         String character = profile.getCurrentCharacter();
         return character != null && !character.isEmpty();
     }
-
 }
