@@ -1,7 +1,10 @@
 package io.shikumiya.ryoko.listeners;
 
+import io.shikumiya.ryoko.characters.Character;
+import io.shikumiya.ryoko.characters.CharacterManager;
 import io.shikumiya.ryoko.profiles.Profile;
 import io.shikumiya.ryoko.profiles.ProfileManager;
+import io.shikumiya.ryoko.skills.CastMythicSkill;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -21,28 +24,59 @@ public class KeyBindListener implements Listener {
     @EventHandler
     public void pressNumber(PlayerItemHeldEvent event) {
         Player player = event.getPlayer();
-        if (!hasCharacter(player)) return;
+        Character character = hasCharacter(player);
+        if (character == null) return;
         event.setCancelled(true);
     }
 
     @EventHandler
-    public void pressF(PlayerSwapHandItemsEvent event) {
+    public void onPressF(PlayerSwapHandItemsEvent event) {
+
         Player player = event.getPlayer();
-        if (!hasCharacter(player)) return;
+        Character character = hasCharacter(player);
+        if (character == null) return;
+
         event.setCancelled(true);
+        String skill = character.getSkill("F");
+        CastSkill(player, skill);
     }
 
     @EventHandler
-    public void pressQ(PlayerDropItemEvent event) {
+    public void onPressQ(PlayerDropItemEvent event) {
         Player player = event.getPlayer();
-        if (!hasCharacter(player)) return;
+        Character character = hasCharacter(player);
+        if (character == null) return;
         event.setCancelled(true);
-    }
 
-    private boolean hasCharacter(Player player) {
+     }
+
+    private Character hasCharacter(Player player) {
         Profile profile = ProfileManager.getProfile(player);
-        if (profile == null) return false;
-        String character = profile.getCurrentCharacter();
-        return character != null && !character.isEmpty();
+        if (profile == null) return null;
+        String current_character = profile.getCurrentCharacter();
+        if (current_character == null || current_character.isEmpty()) return null;
+        return CharacterManager.getCharacter(current_character);
     }
+
+    private void CastSkill(Player player, String skill) {
+
+        if (skill == null || skill.isEmpty()) return;
+        String[] parts = skill.split(":",2);
+
+        if (parts.length == 1) {
+            return;
+        }
+
+        String prefix = parts[0].toLowerCase();
+        String skill_ = parts[1];
+
+        switch (prefix) {
+            case "mm":
+            case "mythicmobs":
+            case "mythic":
+                CastMythicSkill.onCast(player, skill_);
+        }
+    }
+
+
 }

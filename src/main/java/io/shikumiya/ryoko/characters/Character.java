@@ -3,7 +3,9 @@ package io.shikumiya.ryoko.characters;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Character {
 
@@ -13,7 +15,7 @@ public class Character {
     private final boolean DOUBLE_JUMP;
     private final boolean GLIDING;
     private final boolean OFFHAND_ITEM;
-    private String[] ABILITY;
+    private final Map<String, String> ABILITY;
 
 
     public Character(ConfigurationSection config) {
@@ -23,6 +25,15 @@ public class Character {
         this.DOUBLE_JUMP = config.getBoolean("Options.DoubleJump", true);
         this.GLIDING = config.getBoolean("Options.Gliding", true);
         this.OFFHAND_ITEM = config.getBoolean("Options.OffhandItem", false);
+
+        this.ABILITY = new HashMap<>();
+        for (String line : config.getStringList("Ability")) {
+            String[] s = line.trim().split("\\s+", 2);
+            if (s.length == 2) {
+                ABILITY.put(s[0], s[1]);
+            }
+        }
+
     }
 
     public String getID() {
@@ -47,5 +58,13 @@ public class Character {
 
     public boolean isOffhandItem() {
         return this.OFFHAND_ITEM;
+    }
+
+    public Map<String, String> getAbility() {
+        return this.ABILITY;
+    }
+
+    public String getSkill(String SKILL) {
+        return this.ABILITY.get(SKILL);
     }
 }
