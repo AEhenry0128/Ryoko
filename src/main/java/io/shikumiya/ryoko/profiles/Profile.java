@@ -13,22 +13,18 @@ public class Profile {
     private UUID UNIQUE_ID;
     private String DISPLAY_NAME;
     private String CURRENT_CHARACTER;
-    private int JUMPING_STATUS;
-    private boolean LAST_JUMP_INPUT;
+    private MovementStatus MOVE_STATUS;
 
     public Profile(Player player) {
         this.UNIQUE_ID = player.getUniqueId();
         this.DISPLAY_NAME = player.getName();
-        this.CURRENT_CHARACTER = "";
-        this.JUMPING_STATUS = 0;
     }
 
     public Profile(Map<String, Object> profile) {
         this.UNIQUE_ID = UUID.fromString((String) profile.get("uniqueID"));
         this.DISPLAY_NAME = profile.get("displayName").toString();
         this.CURRENT_CHARACTER = profile.get("current_character").toString();
-        this.JUMPING_STATUS = 0;
-        this.LAST_JUMP_INPUT = false;
+        this.MOVE_STATUS = new MovementStatus();
     }
 
     public Map<String, Object> getJSONMap() {
@@ -36,7 +32,7 @@ public class Profile {
         Map<String, Object> Map = new LinkedHashMap<>();
         Map.put("uniqueID", UNIQUE_ID);
         Map.put("displayName", DISPLAY_NAME);
-        Map.put("current_character", CURRENT_CHARACTER);
+        Map.put("current_character", CURRENT_CHARACTER == null ? "" : CURRENT_CHARACTER);
         Map.put("has_characters", new HashMap<>());
 
         return Map;
@@ -46,14 +42,8 @@ public class Profile {
         this.CURRENT_CHARACTER = character.getID();
     }
 
-    public void removeCharacter() {this.CURRENT_CHARACTER = "";}
-
-    public void setJumpStatus(int status) {
-        this.JUMPING_STATUS = status;
-    }
-
-    public void setLastJumpInput(boolean TF) {
-        this.LAST_JUMP_INPUT = TF;
+    public void removeCharacter() {
+        this.CURRENT_CHARACTER = "";
     }
 
     public UUID getUUID() {
@@ -68,12 +58,8 @@ public class Profile {
         return this.CURRENT_CHARACTER;
     }
 
-    public int getJumpStatus() {
-        return this.JUMPING_STATUS;
-    }
-
-    public boolean getLastJumpInput() {
-        return this.LAST_JUMP_INPUT;
+    public MovementStatus getMovementStatus() {
+        return this.MOVE_STATUS;
     }
 
 }

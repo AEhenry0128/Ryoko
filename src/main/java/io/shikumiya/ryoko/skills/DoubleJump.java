@@ -2,6 +2,7 @@ package io.shikumiya.ryoko.skills;
 
 import io.shikumiya.ryoko.characters.Character;
 import io.shikumiya.ryoko.characters.CharacterManager;
+import io.shikumiya.ryoko.messages.MessageHelper;
 import io.shikumiya.ryoko.profiles.Profile;
 import io.shikumiya.ryoko.profiles.ProfileManager;
 import org.bukkit.GameMode;
@@ -29,14 +30,13 @@ public class DoubleJump implements Listener {
         Player player = event.getPlayer();
         Profile profile = ProfileManager.getProfile(player);
 
-        int status = profile.getJumpStatus();
-        if (player.isOnGround() && status !=0) {
-            profile.setJumpStatus(0);
+        if (player.isOnGround() && profile.getMovementStatus().getJumpStatus() != 0) {
+            profile.getMovementStatus().setJumpStatus(0);
         }
 
         boolean key = event.getInput().isJump();
-        boolean last_key = profile.getLastJumpInput();
-        profile.setLastJumpInput(key);
+        boolean last_key = profile.getMovementStatus().getLastJumpInput();
+        profile.getMovementStatus().setLastJumpInput(key);
         if (!(key && !last_key)) return;
 
         GameMode gamemode = player.getGameMode();
@@ -45,11 +45,28 @@ public class DoubleJump implements Listener {
         Character character = CharacterManager.getCharacter(profile.getCurrentCharacter());
         if (character == null || !character.isDoubleJump()) return;
 
-        if (!player.isOnGround() && status == 0) {
-            profile.setJumpStatus(1);
-            Vector doubleJump = player.getVelocity().setY(0.6);
-            player.setVelocity(doubleJump);
-        }
 
+        if (!player.isOnGround()) {
+
+            int status = profile.getMovementStatus().getJumpStatus();
+            switch (status) {
+                case 0 -> {
+                    profile.getMovementStatus().setJumpStatus(1);
+                    Vector doubleJump = player.getVelocity().setY(0.6);
+                    player.setVelocity(doubleJump);
+                }
+                case 1 -> {
+                    if (!character.isGliding()) return;
+                    profile.getMovementStatus().setJumpStatus(2);
+                    Gliding.start(player, profile);
+                }
+                case 2 -> {
+                    profile.getMovementStatus().setJumpStatus(1);
+                    Gliding.cancel(profile);
+                }
+            }
+        }
+        return;
     }
+
 }
